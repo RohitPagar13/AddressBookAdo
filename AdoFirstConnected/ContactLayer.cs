@@ -150,6 +150,48 @@ namespace AdoFirstConnected
             }
         }
 
-        
+        public void Update(string fName, Contact c)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionstring))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("Update Contact set firstName=@firstName , lastName=@lastName, address= @address, city=@city, state=@state, zip=@zip, phone=@phone, email=@email, bookName=@bookName where firstName=@fname", con);
+                    cmd.Parameters.AddWithValue("@firstName", c.firstName);
+                    cmd.Parameters.AddWithValue("@lastName", c.lastName);
+                    cmd.Parameters.AddWithValue("@address", c.address);
+                    cmd.Parameters.AddWithValue("@city", c.city);
+                    cmd.Parameters.AddWithValue("@state", c.state);
+                    cmd.Parameters.AddWithValue("@zip", c.zip);
+                    cmd.Parameters.AddWithValue("@phone", c.phone);
+                    cmd.Parameters.AddWithValue("@email", c.email);
+                    cmd.Parameters.AddWithValue("@bookName", c.bookName);
+
+                    cmd.Parameters.AddWithValue("@fName", fName);
+
+                    con.Open();
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Updated rows: " + rowsAffected);
+                    }
+                    else
+                    {
+                        Console.WriteLine(fName + " not exists");
+                    }
+
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
     }
 }
