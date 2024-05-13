@@ -26,7 +26,7 @@ namespace AdoFirstConnected
                 try
                 {
                     SqlCommand cmd = new SqlCommand("Insert into Contact (firstName, lastName, address, city, state, zip, phone, email, bookName) values (@firstName, @lastName, @address, @city, @state, @zip, @phone, @email, @bookName)", con);
-                    
+
                     cmd.Parameters.AddWithValue("@firstName", c.firstName);
                     cmd.Parameters.AddWithValue("@lastName", c.lastName);
                     cmd.Parameters.AddWithValue("@address", c.address);
@@ -42,11 +42,11 @@ namespace AdoFirstConnected
 
                     Console.WriteLine("Rows Affected= " + rowsaffected);
                 }
-                catch(SqlException ex)
+                catch (SqlException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
@@ -115,5 +115,41 @@ namespace AdoFirstConnected
                 }
             }
         }
+
+        public void Delete(string name)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionstring))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("delete from Contact where firstName=@name", con);
+                    cmd.Parameters.AddWithValue("@name", name);
+
+                    con.Open();
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("deleted rows: " + rowsAffected);
+                    }
+                    else
+                    {
+                        Console.WriteLine(name + " not exists");
+                    }
+
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        
     }
 }

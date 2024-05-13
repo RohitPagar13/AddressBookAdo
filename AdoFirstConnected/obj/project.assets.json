@@ -476,11 +476,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\BridgeLabz\\Codes\\Review_3\\AdoFirstConnected\\AdoFirstConnected.csproj",
+      "projectUniqueName": "E:\\BridgeLabz\\Assignments\\AdoConnected\\AdoFirstConnected\\AdoFirstConnected.csproj",
       "projectName": "AdoFirstConnected",
-      "projectPath": "E:\\BridgeLabz\\Codes\\Review_3\\AdoFirstConnected\\AdoFirstConnected.csproj",
+      "projectPath": "E:\\BridgeLabz\\Assignments\\AdoConnected\\AdoFirstConnected\\AdoFirstConnected.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "E:\\BridgeLabz\\Codes\\Review_3\\AdoFirstConnected\\obj\\",
+      "outputPath": "E:\\BridgeLabz\\Assignments\\AdoConnected\\AdoFirstConnected\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

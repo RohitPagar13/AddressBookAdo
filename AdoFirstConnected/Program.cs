@@ -57,6 +57,11 @@
                         cl.DisplayByName(Console.ReadLine());
                         break;
 
+                    case 4:
+                        Console.WriteLine("Enter name to delete");
+                        cl.Delete(Console.ReadLine());
+                        break;
+
                     case 6:
                         cl.DisplayAll();
                         break;
