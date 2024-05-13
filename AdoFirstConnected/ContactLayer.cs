@@ -40,7 +40,7 @@ namespace AdoFirstConnected
                     con.Open();
                     int rowsaffected = cmd.ExecuteNonQuery();
 
-                    Console.WriteLine("Rows Affected= " + rowsaffected);
+                    Console.WriteLine("Added to the Address Book \nRows Affected= " + rowsaffected);
                 }
                 catch (SqlException ex)
                 {
@@ -68,10 +68,17 @@ namespace AdoFirstConnected
                     con.Open();
 
                     SqlDataReader sdr = cmd.ExecuteReader();
-
-                    while (sdr.Read())
+                    if (sdr.HasRows)
                     {
-                        Console.WriteLine("Name: " + sdr[0].ToString() + " " + sdr[1].ToString() + ", Phone: " + sdr["phone"].ToString() + ", Email: " + sdr["email"].ToString());
+                        Console.WriteLine("Below are the all Contacts in the Address Book \n");
+                        while (sdr.Read())
+                        {
+                            Console.WriteLine("Name: " + sdr[0].ToString() + " " + sdr[1].ToString() + ", Phone: " + sdr["phone"].ToString() + ", Email: " + sdr["email"].ToString());
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data exists");
                     }
 
                 }
@@ -99,9 +106,16 @@ namespace AdoFirstConnected
 
                     SqlDataReader sdr = cmd.ExecuteReader();
 
-                    while (sdr.Read())
+                    if (sdr.HasRows)
                     {
-                        Console.WriteLine("Name: " + sdr[0].ToString() + " " + sdr[1].ToString() + ", Phone: " + sdr["phone"].ToString() + ", Email: " + sdr["email"].ToString());
+                        while (sdr.Read())
+                        {
+                            Console.WriteLine("Name: " + sdr[0].ToString() + " " + sdr[1].ToString() + ", Phone: " + sdr["phone"].ToString() + ", Email: " + sdr["email"].ToString());
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data exists for the name "+name);
                     }
 
                 }
@@ -135,7 +149,7 @@ namespace AdoFirstConnected
                     }
                     else
                     {
-                        Console.WriteLine(name + " not exists");
+                        Console.WriteLine(name + " does not exists");
                     }
 
                 }
@@ -179,7 +193,7 @@ namespace AdoFirstConnected
                     }
                     else
                     {
-                        Console.WriteLine(fName + " not exists");
+                        Console.WriteLine(fName + " does not exists");
                     }
 
                 }
@@ -192,6 +206,29 @@ namespace AdoFirstConnected
                     con.Close();
                 }
             }
+        }
+
+        public void Count()
+        {
+            using (SqlConnection con = new SqlConnection(_connectionstring))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("select count(*) from Contact", con);
+                    con.Open();
+                    var count = cmd.ExecuteScalar();
+                    Console.WriteLine("No of Contacts in the AddressBook: "+count);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+
         }
     }
 }

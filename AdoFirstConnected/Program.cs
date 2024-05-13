@@ -52,6 +52,43 @@
                         cl.Insert(c);
                         break;
 
+                    case 2:
+                        Console.WriteLine("Enter First Name for Updating the record");
+                        string FName = Console.ReadLine();
+
+                        Console.WriteLine("Enter Contact Details");
+                        Console.Write("Enter First Name: ");
+                        string firstName1 = Console.ReadLine();
+
+
+                        Console.Write("Enter Last Name: ");
+                        string lastName1 = Console.ReadLine();
+
+                        Console.Write("Enter Address: ");
+                        string address1 = Console.ReadLine();
+
+                        Console.Write("Enter City: ");
+                        string city1 = Console.ReadLine();
+
+                        Console.Write("Enter State: ");
+                        string state1 = Console.ReadLine(); ;
+
+                        Console.Write("Enter Zip: ");
+                        string zip1 = Console.ReadLine();
+
+                        Console.Write("Enter PhoneNumber: ");
+                        string phone1 = Console.ReadLine();
+
+                        Console.Write("Enter email: ");
+                        string email1 = Console.ReadLine();
+
+                        Console.Write("Enter Book Name: ");
+                        string bookName1 = Console.ReadLine();
+
+                        Contact c2 = new Contact(firstName1, lastName1, address1, city1, state1, zip1, phone1, email1, bookName1);
+                        cl.Update(FName, c2);
+                        break;
+
                     case 3:
                         Console.WriteLine("Enter Name to search");
                         cl.DisplayByName(Console.ReadLine());
@@ -62,10 +99,17 @@
                         cl.Delete(Console.ReadLine());
                         break;
 
+                    case 5:
+                        cl.Count();
+                        break;
+
                     case 6:
                         cl.DisplayAll();
                         break;
 
+                    default:
+                        Console.WriteLine("Enter Valid Choice");
+                        break;
 
                 }
             }
